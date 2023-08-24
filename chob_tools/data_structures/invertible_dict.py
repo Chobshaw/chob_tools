@@ -29,6 +29,7 @@ class InvertibleDict(MutableMapping[KT, VT]):
             self._backward = {
                 value: key for key, value in self._forward.items()
             }
+            self._check_non_invertible()
 
     def __getitem__(self, key) -> VT:
         return self._forward[key]
@@ -65,6 +66,7 @@ class InvertibleDict(MutableMapping[KT, VT]):
         for val in self._forward.values():
             if val in seen:
                 raise ValueError(
-                    'Dictionary values must be unique to maintain invertability'
+                    'Dictionary values must be unique '
+                    'to maintain invertability.'
                 )
             seen.add(val)
