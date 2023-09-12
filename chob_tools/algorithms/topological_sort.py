@@ -183,9 +183,9 @@ def _dfs_topological_sort(
         else _prepare_graph(graph)
     )
 
+    sorted_list = []
     visited = set()
     currently_visiting = set()
-    sorted_list = []
 
     def dfs(node: NT):
         if node in currently_visiting:
